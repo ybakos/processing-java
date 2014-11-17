@@ -1,3 +1,5 @@
+package renameMe;
+
 import processing.core.*;
 
 public class Main {
