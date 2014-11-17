@@ -1,4 +1,4 @@
-<project name="RenameMe" basedir="." default="main">
+<project name="RenameMe" basedir="." default="run">
 
     <property name="processing.dir"
               value="/Applications/Processing.app/Contents/Java/core/library" />
@@ -27,7 +27,6 @@
     </pathconvert>
 
     <target name="build" depends="clean, compile, jar" />
-    <target name="main"  depends="build, run" />
 
     <target name="clean">
         <delete dir="${build.dir}" />
@@ -35,7 +34,8 @@
 
     <target name="compile">
         <mkdir dir="${classes.dir}" />
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath" includeantruntime="false" />
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath"
+               includeantruntime="false" />
     </target>
 
     <target name="jar">
@@ -48,9 +48,8 @@
         </jar>
     </target>
 
-    <target name="run">
+    <target name="run" depends="build">
         <java jar="${jar.dir}/${ant.project.name}.jar" fork="true" />
     </target>
-
 
 </project>
